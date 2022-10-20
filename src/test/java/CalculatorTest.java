@@ -1,10 +1,7 @@
 import StaticClassesEnumsExeptions.Calculator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
@@ -108,6 +105,13 @@ static Stream<Arguments> dataProvider(){
 
 
 
+    }
+
+    @ParameterizedTest
+    @CsvSource ({"2,2,4,SUMMARY", "4,2,2,DIVISION"})
+    public void csvSourceTest(double a, double b, double expectedResult, Calculator.Type type){
+        double actualResult = Calculator.calculate(a,b,type);
+        assertEquals(expectedResult,actualResult);
     }
 
 
